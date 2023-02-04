@@ -1,0 +1,26 @@
+[
+  {
+    "type":"text",
+    "name":"employeeName"
+  },
+  {
+    "type":"number",
+    "name":"salary"
+  },
+  {
+    "type":"date",
+    "name":"releaseDate"
+  },
+  {
+    "type":"select",
+    "name":"experience",
+    "multi":true,
+    "data" : ["Less than a year" , "From 1-3 years" , "3 years or above"]
+  },
+  {
+    "type":"select",
+    "name":"department",
+    "multi":false,
+    "data" : ["Finance" , "IT" ]
+  }
+]

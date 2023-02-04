@@ -1,0 +1,45 @@
+<div class="card my-2 ">
+ <div class="d-flex justify-content-end expand" (click)="expandCloseFilter = !expandCloseFilter">
+  {{expandCloseFilter ? 'Expand' : 'Close'}} Filter
+  <mat-icon>{{!expandCloseFilter ? 'keyboard_arrow_left' : 'keyboard_arrow_down'}}</mat-icon>
+</div>
+  <div class="card-body" *ngIf="!expandCloseFilter">
+    <div class="row py-3">
+      <form class="row" [formGroup]="empolyeeForm">
+        <div class="col-md-2" *ngFor="let elem of filterList">
+          <mat-form-field class="example-full-width" appearance="fill" *ngIf="elem.type == 'text' ||elem.type =='number'">
+            <mat-label>{{elem.name | appTitleCase}}</mat-label>
+            <input matInput formControlName="{{elem.name}}" [type]="elem?.type">
+          </mat-form-field>
+
+          <mat-form-field class="w-100" appearance="fill" *ngIf="elem.type == 'date'">
+            <mat-label>{{elem.name | appTitleCase}}</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="{{elem.name }}">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="w-100" appearance="fill" *ngIf="elem.type == 'select'">
+            <mat-label>{{elem.name | appTitleCase}}</mat-label>
+            <mat-select [formControlName]="elem.name" [multiple]="elem?.multi">
+              <mat-option *ngFor="let item of elem?.data" [value]="item">
+                {{item}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-md-2 gap-2 ">
+          <button class="btn btn-primary me-1" (click)="filter()">Filter</button>
+          <button class="btn btn-primary ms-1" (click)="reset()">Clear All</button>
+
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
